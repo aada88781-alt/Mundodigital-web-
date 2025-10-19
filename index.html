@@ -1,0 +1,400 @@
+<!DOCTYPE html><html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Explora Mundos Virtuales</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+/* Reset y fuentes */
+* { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Poppins', sans-serif; }
+body { background: linear-gradient(135deg, #111 0%, #1a1a1a 100%); color: #fff; overflow-x: hidden; }
+header { position: fixed; width: 100%; background: rgba(20,20,20,0.95); display: flex; justify-content: space-between; align-items: center; padding: 15px 50px; z-index: 1000; border-bottom: 1px solid #333; }
+header h1 { color: #0ff; font-size: 1.8rem; text-shadow: 0 0 10px #0ff; }
+nav a { color: #fff; margin-left: 20px; text-decoration: none; font-weight: 500; cursor: pointer; transition: 0.3s; }
+nav a:hover { color: #0ff; text-shadow: 0 0 5px #0ff; }/* Contenedor de tarjetas */ .container { display: flex; flex-wrap: wrap; justify-content: center; padding: 150px 20px 50px 20px; gap: 30px; } .card { background: #1e1e1e; border-radius: 20px; padding: 25px; width: 350px; min-height: 250px; box-shadow: 0 20px 30px rgba(0,255,255,0.2), 0 0 60px rgba(0,255,255,0.1); transition: transform 0.5s, box-shadow 0.5s; perspective: 1000px; } .card:hover { transform: rotateY(8deg) rotateX(5deg) translateY(-10px); box-shadow: 0 30px 50px rgba(0,255,255,0.4), 0 0 80px rgba(0,255,255,0.2); } .card img { width: 100%; height: 180px; border-radius: 15px; object-fit: cover; margin-bottom: 15px; } .card h3 { color: #0ff; margin-bottom: 10px; text-shadow: 0 0 8px #0ff; } .card p, .card li { font-size: 1rem; line-height: 1.5; } .card ul { margin-left: 15px; }
+
+/* Animación de texto */ @keyframes fadeUp { 0% { opacity: 0; transform: translateY(20px); } 100% { opacity: 1; transform: translateY(0); } } h2, h3, p, li { animation: fadeUp 0.8s ease forwards; }
+
+/* Footer */ footer { text-align: center; padding: 25px; background: #111; border-top: 1px solid #333; color: #888; margin-top: 50px; }
+/* Imagen flotando */
+.card img {
+  width: 100%;
+  height: 180px;
+  border-radius: 15px;
+  object-fit: cover;
+  margin-bottom: 15px;
+  transition: transform 4s ease-in-out;
+  transform: translateY(0);
+  animation: floatImg 4s ease-in-out infinite alternate;
+}
+
+@supports (animation: floatImg) {
+  @keyframes floatImg {
+    0% { transform: translateY(0); }
+    100% { transform: translateY(-10px); }
+  }
+}
+
+.card h3 { color: #0ff; margin-bottom: 10px; text-shadow: 0 0 8px #0ff; }
+.card p, .card li { font-size: 1rem; line-height: 1.5; }
+.card ul { margin-left: 15px; }
+
+/* Tabs */ .tab { display: none; } .tab.active { display: block; animation: fadeUp 1s ease forwards; }
+
+
+
+/* ==== CONTACTO ESTILO NEÓN SUAVE ==== */
+.contacto-contenedor {
+  width: 90%;
+  max-width: 400px;
+  margin: 3rem auto;
+  background: rgba(15, 15, 25, 0.85);
+  padding: 5rem;
+  border-radius: 15px;
+  box-shadow: 0 0 25px rgba(0, 255, 255, 0.3);
+  backdrop-filter: blur(8px);
+}
+
+.contacto-contenedor h2 {
+  text-align: center;
+  color: #00ffff;
+  margin-bottom: 1.5rem;
+  font-size: 1.5rem;
+  text-shadow: 0 0 10px #00ffff;
+}
+
+.contacto-contenedor form {
+  display: flex;
+  flex-direction: column;
+}
+
+.contacto-contenedor label {
+  color: #ccc;
+  font-size: 0.9rem;
+  margin-bottom: 0.3rem;
+  text-align: left;
+}
+
+.contacto-contenedor input,
+.contacto-contenedor textarea {
+  background: rgba(0, 0, 0, 0.6);
+  border: 1px solid rgba(0, 255, 255, 0.4);
+  border-radius: 10px;
+  padding: 5px;
+  margin-bottom: 1rem;
+  color: white;
+  font-size: 0.95rem;
+  transition: box-shadow 0.3s ease, border 0.3s ease;
+}
+
+.contacto-contenedor input:focus,
+.contacto-contenedor textarea:focus {
+  outline: none;
+  border-color: #00ffff;
+  box-shadow: 0 0 15px rgba(0, 255, 255, 0.5);
+}
+
+.contacto-contenedor button {
+  background: linear-gradient(90deg, #00ffff, #0088ff);
+  border: none;
+  color: white;
+  padding: 5px 0;
+  border-radius: 10px;
+  font-size: 1rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.3s;
+  box-shadow: 0 0 20px rgba(0, 255, 255, 0.3);
+}
+
+.contacto-contenedor button:hover {
+  box-shadow: 0 0 30px rgba(0, 255, 255, 0.6);
+  transform: scale(1.03);
+}
+ {
+      margin: 0;
+      background-color: black;
+      overflow: hidden;
+    }
+
+    .globo {
+      position: absolute;
+      width: 200px;
+      animation: flotar 20s linear infinite;
+    }
+
+    @keyframes flotar {
+      0% {
+        top: -200px;
+        left: -200px;
+      }
+      25% {
+        top: 20%;
+        left: 80%;
+      }
+      50% {
+        top: 60%;
+        left: 40%;
+      }
+      75% {
+        top: 30%;
+        left: 10%;
+      }
+      100% {
+        top: -200px;
+        left: -200px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <img
+    src="data:image/jpeg;base64,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"
+    alt="Globo terráqueo"
+    class="globo"
+  />
+  
+<header>
+<h1>Explora Mundos Virtuales</h1>
+<nav>
+<a data-tab="inicio">Inicio</a>
+<a data-tab="informacion">Información</a>
+<a data-tab="historia">Historia</a>
+<a data-tab="hardware">Hardware</a>
+<a data-tab="software">Software</a>
+<a data-tab="aplicaciones">Aplicaciones</a>
+<a data-tab="diferencias">Diferencias</a>
+<a data-tab="contacto">Contacto</a>
+</nav>
+</header><!-- Inicio --><section id="inicio" class="tab active">
+<div class="container">
+<div class="card">
+<h2>Explora mundos virtuales</h2>
+<img src="https://www.noticiasneo.com/sites/default/files/2024-02/metaverse-7199393_640.jpg" alt="mundos virtuales">
+<p>Sumérgete en experiencias inmersivas, toca y manipula objetos, y descubre cómo la realidad virtual y aumentada transforman la interacción digital.</p>
+</div>
+<div class="card">
+<img src="https://s03.s3c.es/imag/_v0/770x420/7/3/4/zero-latency-equipo-realidad-virtual-770x420.jpg" alt="Inmersión Total">
+<h3>Inmersión Total</h3>
+<p>Experimenta un entorno digital 3D que responde a tus movimientos.</p>
+</div>
+<div class="card">
+<img src="https://universolibre.org/wp-content/uploads/2024/05/realidad-virtual.png.webp" alt="Interacción">
+<h3>Interacción</h3>
+<p>Manipula objetos virtuales como si fueran reales.</p>
+</div>
+</div>
+</section><!-- Información --><section id="informacion" class="tab">
+<div class="container">
+<div class="card">
+<img src="https://www.inmersys.mx/hubfs/realidad%20virtual%20y%20realidad%20aumentada.png" alt="Información General"><div>
+<h2>Información General</h2>
+<p>La realidad virtual (RV) y la realidad aumentada (RA) son tecnologías que combinan el mundo digital con el mundo real, pero difieren en su enfoque: la RV sumerge al usuario en un entorno completamente digital e inmersivo, mientras que la RA superpone elementos digitales (como imágenes, gráficos y texto) al mundo real, permitiendo una interacción simultánea con ambos. La RA suele ser más accesible y utiliza dispositivos como teléfonos o tabletas, mientras que la RV requiere hardware más especializado como gafas de RV para una inmersión total. </p>
+<ul>
+<h3>Realidad Virtual(RV)</h3>
+<li>Definición: Crea un mundo completamente virtual y simulado en el que los usuarios pueden interactuar. </li>
+<li>Experiencia: Inmersión total que reemplaza el mundo real. </li>
+<li>Dispositivos: Requiere gafas de RV especializadas, y a veces guantes u otros sensores. </li>
+<li>Usos comunes: Videojuegos, simulaciones de entrenamiento y formación, y experiencias educativas o terapéuticas. </li>
+
+<h3>Realidad Aumentada(RA)</h3>
+<li>Definición: Superpone información digital sobre el entorno físico real del usuario. </li>
+<li>Experiencia: Enriquecimiento del mundo real, no lo reemplaza. </li>
+<li>Dispositivos: Generalmente utiliza dispositivos que la mayoría de las personas ya poseen, como teléfonos inteligentes, tabletas o gafas de RA. </li>
+<li>Usos comunes: Juegos (como Pokémon Go), aplicaciones de diseño de interiores, marketing, turismo y asistencia técnica en la industria. </li>
+</ul>
+</div>
+</div>
+</section><!-- Historia --><section id="historia" class="tab">
+<div class="container">
+<div class="card">
+<img src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wCEAAkGBxMTEhUSExIWFhUXGBYZGBgVGBYXFxcYGBcXFxgYFRcYHSggGBolHRUVITEhJSkrLi4uFx8zODMtNygtLisBCgoKBQUFDgUFDisZExkrKysrKysrKysrKysrKysrKysrKysrKysrKysrKysrKysrKysrKysrKysrKysrKysrK//AABEIAKsBJgMBIgACEQEDEQH/xAAcAAABBQEBAQAAAAAAAAAAAAAEAgMFBgcBAAj/xAA8EAACAQIEBAQDBgUDBAMAAAABAgMAEQQSITEFBkFREyJhcTKBkQcUI0KhsVJiwdHwM3LhFRZj8TREwv/EABQBAQAAAAAAAAAAAAAAAAAAAAD/xAAUEQEAAAAAAAAAAAAAAAAAAAAA/9oADAMBAAIRAxEAPwC3hRqKUAR/nSmWc3NOEHegcsTpTkUPSh1B704rHvQHIley0KGPc/rXQfXWgMUevtSG0/z0ocOR13OlCcQ4osP+o4HobUBOOxHhrf8ASgW4+52UbVEYnjceI/02JC702G0tQHzcWkOzAewpeFxMhZRn0JF9Kir60nF414kZwAcgzD5UF6eMb02y20qqcA5oGIW97NpmHbSrGjHegd8K/WktGbelez2pCSHvQNyJTiG1edqQqmgeK610KKaINdYUHXklXWN7HrcAg03i+P5Iy2Ih+EXzR9+lxSw3eofmAfhqv8TqD9aADDNj518eOSEfwwNoxXpr3qU4PivGQ3jKOpsykaqe49K7GiMoFgSNLjQr8/So7FO+HkM6OzIABIp6r/EPWgL4uQI3B6jLfrc6Vm/MVlmMYUhY1CqOnqfrWo8xFWSE/lexLrqNRp/npVE4ryXiBeRJFnG97+Y/KgqgNdS36U5icHJHo8bL/uBA+tIw6A5r9BQN3q68lcJlVPvKR3bNYEi+Vept67fKqtwTAmaTKb5QMz9TlFavgcIDZsLMwPlzR3sdBoP6/OgcgGHnIZ0+7ybaDyEDuPyk0jFRYqMt92dGTorEOBrbMAf2pzi/E0UMk8DXIBZ413/3et70BHhcMiGeOVksMxD7gAbD1oO8X4ukURaaFfEGi28rF/UbEVX+F8zRN8Yyt17H2qr8e4w+JlLsSQNFHYDr71GBulBqMGNRtQR86Ri8aqDSzE6ADes6ws0gNkJv23/Sr1wrDMqrIyguRr6egHegLwWDsM8oBdu429K9RaTqd9PQ6V6gmFUUpDYV5RXGFApGApwkUyUvTyx2oFxinbDbQUhI+1QHOHGDhoiV+NtFoI3nLm3wAY4SDJfU/wANZnjcdJKS0jlie/62FMzSlyWYksdz3NNKDagufJBXI9+4q06VWOSI7xv7irUsJ6UDaEdqb4gAYpNPyN+1ELCb7V7FYclH/wBrftQZfw3HtC+dT7joRWm8B5xhZAHIB7HpWWzYFxfymmNqD6FwmISRbqQRSwoFYpy3x2aGVcrnISAVOotWzxSAgHuAaDrpXGNOOwtQytrQEJSWI1rsb6UnLQNnagcXGCpBHqPcG4o6RgBYka96HcX0GtAxLjYXP4JFwBnA6N1oe4LMp1DKQb9QelEyYdReygE6mw3NA42YIuft/goAMNiDhWKkFsIWt3MTd/bX9Km44wpsdVOqsOoPWk4WMGIAgHMLkHrfe9BYQ/dmELknDufIx1MRv8JPb1oF8xSfheGLMZPKoYAkeo6iqxzFgIYACiZHyENbVSe47VJYySYYpzJZViF0J2YdCKa4efvEjZrWKsLnYH1NA9yTwmSKPxEZPFa+ZGtcgjQa1aHaIANKnhOeo0BNN4eIEAzRgZQMskXp1Nt6RPiGZgkc6EXuFcakdqAfCtM95IsUsii/lYDodzffSqJzjx7x5PDQAIDZsumZupqe5l4rCWbDFhDJbzPHt/t02qiQ4UgswsVVgL97negYOhNdiQscqi5NPzYNzIyKjMb9ATvV65e5ZaCITyAXOlydqATgnBhCAW1c6n0HaplZd+9RWM4hIHIjiz2PxdDQv/WnRvxYsoPUbC/U0E7PjESxfr6V6hpFBQG4OazA/KuUFnRW3p4Me1OqBXiR2tQNkn2p3LpvSSw6CnF1sKBcC+tY/wA8cZafEuL+RCQB+hrX2sKwbiY/HlG/na3rregEiS51OnpTs84sAoGlG8L4f4gdmIFh5QSNToBb1oKCMB/ONQfh9RQXfkaMlXBBF7EW2q2lCOlUXCc0rA2iMzEdbaW6CpH/AL0me2XCsR70Fsghub9KXOgAOptrVOPMuL6YbKe5puXjuM6xJpqbnW3tQTc2FS17DaqXzVgFWzKLXovFcxTlRYqLgk6eu1Dx8SEkZWW7Nmv5dNPSgr2FkysCeljW38CxwlgRgdLW+lYpPh/xMi632tv7GtX5Ew7RYUJLobn10NBZHU03EbU4ZBtSNNqBQsRa9P0yCL0tXoAONKLL86EVBbS4+dE8aIshuKGU3FxtQLbN/F9aFxqs7BLA21I79hRkb6XNv860jh/mDP8Axk29u9AqKdQLMpU/UfKgOYscqwMtwS/lAqZGxAOg71ROYcerzHQEJ23J9KAvByfeYfuMzefeKQ6WPRWPb3qT4Nw4RI0IAeREOeNha7dTm7GgOVeEMc00iMVsfKbhrdx61N8I49BKskU0nhMpyo7fG0fUHvQGsRGgyrJEbeZQMy2I/LUTxrGvHFliX7xJJohVLFe+YjalpxGNGC4WN5d1DOwCD0NVvmjjvEo2KsoiQ9Yhe4/3gaUAMPJczfiYmWOEEknO3n+lPwjheHsCz4iTprZSelwOlVKSZ5DdmZ2J0uST7/0+VWCHgPhweK4sxK2HoWFBaxxCc3CeHAP5Vu2o6mo+WaRFKtmcb6m4uetqkphlciw2B/SoyfF53CLt1Pf2oGHnLAKh06nt7UtMOodUOocEG+5NqJhhF9O9KxjImQsTbOL5d7daDnAIQIjHcgo8gN9RYnygH0ANdq0QxRXJRD4ZsRfe/c+p1r1AXGK6U19KYW/elSK296BxhTkVR7YpAdZBfsSKYxfGoEFzKPkb0EwxAvfaxvWS4rgsaSl/EBUsSQd971YuauYoZMM6wyEtpe2hsazbXufmaCexmKgSdroGU3y2/KwHl99ahEkLOGJOpBP1/SkeFfWkM5XQfP2oJHHqni+Ukr1Jq1cK4lBEoCSb9xVJTExAaxlvnanVx8Q/+uD7saC9z8yxX1f6AULjuNYVla5cuRoflVPbGL0hQfU022NPSNP1oDBKvhMmW7Mbg3+EUExI0HTY/wBqbkxDEflA7Cn+HyZmCt8r6UBHDcW0bh1jDH+arjw3mzEuVU4dQt7EgkVHRJFGuYuot00NBPzMqnyKW19rUGpFj6V2M262NY9jOZ8Q8mcSsNrDoKbPMeLuT47a+1BtaqTT4jPasw5N5sxBxCpLJmRtNRsa1ITj50DOKiBADC49aBl4eh2uvsaK4nNlAOu/SovF8UVFLkk2G3UnsKBGLwjhCqy/FoL770Sn4ahWGWwt0G1QsLTTkmVxGuXMFXUr1Fz1NO4uMSeZ80hsBckhbD0oJKXicJZY2kHnIXTU67gH6VbMDyzhodUiXf8ANqb971kOExg++xzSlUiSQAADQAbn9BWo4/nKFUDIGbN8IItm/tQT8sa5WsB8J7AbdD0rJcVwuN2IS8eU5r+VrEHQ662qxY7nKYg5UVbj8wN1761VcMzF8xDFb69b/PtQSHDMpLArZxqw6OP407nuKM4lMkcLtfykWsTcH2FB8QZXUEHI6aox6H19KrnGcS+ICMuiq2WRRrY/xAdjQEct8GU3xAAtfyA/qaO465MRUDUkWPS4NP51jQC4soFqieJSmRSdl0t3Ou5oDuMQyLIqs17qpJGnTY0y8PnFqluZofxIjfeNP2oQrtQOQRAbUViMKDG3Wwv870iBNKNjjBHoRrQFYSIsg1OwP6V6nOGCyKNrC30NeoCUGt6C5gxPhQO6tqBp3vVX5w5w8AmCCxk/O3RR6dzVD4jx7ETf6khI7DagFlxkjEszsSSevU0jOx01N6YY0/gsW0RDKAT66/pQJSRhpqAentXBORUpFx03BkhRh7WrmInw8muRk11sbigjjiTTLNc3qwwYDAm+aV79LD0qLxXD0CZ45s4ubgixX+9AAO1WHhvKskoB8RAD9ar4WpbhONlhdbkgXHtrQWCL7PX6zj6UHxLlHwVZmnWy+laG+KAhMnZb/pWY8SklnOcmyOba7AUEE9r6VxbjXX0p2aAg6j59NNKewuK8O9lBOm+tAiLDSMfgY371KYblqViM7Ig7k0xjOPSPawC+1AtiXJ1c0Ehi+GwxMVeYtbog39zUc9rm2o6VwKT0J7nt70XgeFSzECNCxNyNhoN6AWGQqwINiNR71cOGc/4hLCQK6gexqmuhBIIsQdu1tKbJN6DaX5gjxESPE3uOoPak+KpuWK6flPpresqwjMtxc30OhtardgsUchhIuzZBn6jqaCcwqK4LG++Y/wBPlQ/GcWY0Nn1OljTcbMrFc2lhb2FVbjOMMklgL62FATwPBPi8QF/ImrHpa+taU2EByi2i6L6DpUby1wn7vh1UizsMzfPW1e49xMwoQilnI0C73PWgZ4liQXEClQT8Wo0FEBAgsLadf+ay2cSAszBwxNySDUvwKOV9XkYR7WvvQWLiOJBVr6Kt7/zHsDUBy8xEpxFwACPL0fstqH5ixFiIw5I/ak8Ga4t12Hb3HrQSayGaaS4sAdF6KTrR08Fo2v2puGEKZG7he3TejZheNvagm+ZYriA/+Nf2qKdbAVPcfjvDhjcfAP2FRgw4K/vQOYaG4vUhFhzTPD47f8VIxJQJw8Ruw31r1F4eHUnuK7QfPOIJYsx3LE02ppRQgkHQ66V4RnYAk9BbegkeXuE/eZlhvYHduwqQ5p5bXBvk8QvpcHKdau/2a8rtChxEwyu/wr1A9auUmDR9GUH3F6DCMXwKWOCPEMBkk27/ADqMNbL9pHDScH+GukZ2HbrpWOEUHAK6F9CT6daQ1F8NhkLjJGzntQOCO6lEjNz1PpvTuHa6KD0YXPX2FTSYLGTeRcP4YO7HSw603jOGrCyRXv3Pegtqyg4Y9sh0+VUbH4snDBLWKt9RWiRYceBpbYCqjw7Cq07RsNCDcf2oIYYCZ0GQqy6WvuPQ1D4hSrMpGt6u78mTg3gmGQ333FRnEeTsSrXur6anr7UFVGtT/KHBFxc5icsFC5iV332qImw7KbMCCO9aN9lfD7RyTH8xyj2FBYsBynhYo3iVSQ/xFjdvSx6VIcC4Bh8Oc0aG40uzX0o8JbWlx7UGO8/8AaDFO6qTFJ5lI2BO4NVbY+tfRU2DjkFnAYdjVV5j5GimQjDqqSDbsaDJsMSSfWw/91YuExsJLZrhTfMLkXtQGF4W8eIMU6EFb3B9B09K1XkzhsQwKiyZiWPmtca6XoKFxvGEKBfW+ld5N4cJJPHcXWPYH8zU/wDaDhQjroo3uVN71EcN5gkiVUyXA2sdfn3oNB4pxRY0LMbb2HfsAKpsGPLOZn+JthcjKKNxHDZsSFllYJpcIf0JoObgk7AkZWA3sf2oHG4oZPww112NwCTfoPWheJ4gw+TVSv5GFmtQMUjYd1lMd8jbHTWpbjmMXiDeKg8Oa2qnVWt60FTlkuST1ozB4nKoA3vTEvDplNvCa/oCR9RUjwzASEf6bXPdTYUBEWJUIzktnXTKdirbH63ozD4wlSAeh/alDBKEOt7jW/pQGE1YqOxt637UGncXt90wzfyj9hUUuq3HalDjIlw8MXhlSgsbkbrpTkCaW3oF8JmDLexFqk06a1E8IU5yKm1iIIoHjIFALGw2FepM+CzjKx2N/qK9QZHyly+2MlLkWiBuxPU9QK07D8vYaMgrELjY0XhMFHGoRAFUdKKFrUCS1/l/mlcjNuutdWnAg3vQDYuRPDYMRlYEH6Gvn/FR2dl7MwB9Lmti51xwhjIAuTWWnhzSszKVWwJ1+ulAdyzwyNxmbU/pV9wWHUWIUCqRyjIA2XuBarvhZaCSyX0qqcbwyCQyOQAvSrhCw3+tVPmjgvjtnD2/loJTAY+Iwkhul/lVXw+IQ4hZFcfFlt110pEXAJNFEtkO4/tRfCuBxRyZ2BJB8vy2oLfCDbTbWg8YxF6Nw+KB0uO9B8QcWNBn/NABf1t/l60LkXCFMDEO9z9ao+MTPiY0a2rAfKtgwkKRxqiCwUWoGTGTS1gPenS9dEliKAcqe9KjU96IBBpBkABuQOt/agq3NuEzPGwHms4JG5vVbwGEnfEyRRElVCi3S9qd4lziJMQ2STw408qta+Y9T7VZ/s7wZEksxzHOc2YiwI7gUFcxXJuJDEspYdBr+lQ2J4LLEwdYTddRcXFbdw3jUM7yJE2bwiFY9LnWwpcvhHfLQYZieZMSDZ1F/am+GcZk8xzWJPsK2HH8Dw8lzlX4T27VTo+T4GjbSxvvQZ9xLMQWLXux09e9F8GwMbxyO0uQqpKi9sx7UTxfl4RRhhc+dh30FQmLhGRD7/v1oLNy7zeYszH4VTRDY3bYWvVg43zBLJh48ThSrA2Eo0GRuot2rNcBgmmcRRrmdiQF79d6nuGcnY9mYHDyZFN3XNlDe3c6UDM/GiykvpINx01PT61zgsirmmfUDoOhvpftUZjFyyjOjixGdHFmyqdR66VMcLxkfjS+HFbDuRcNqVFBLwThyxUZvhyldrk+a9WvC6+lRuDwaoAIwAvp61KYeKx3oEYJLS1OJHrvUYIfMCP1qUjGxJoHVj9a9Xj71ygCQU6KA4XxWLERrLG1w1we6sNwaJEouLWOv+CgezU4rdxTJYUieQ9DQV7nx08M5iPT3rM1a3Wrrz7J5Be/yqiSN6H6UBPDmyPobf0q6cOxYOl71QRJr1Hv1qd4diCCNbUF3fEaWBqI4jxeKE+d9ew1vT9jb5VVOL4FFfO1296Cbj5ww9jfMLbetCR81xMfMjKO/SgYsRgbagAjcH+lM47iULkJFGbe29BbMDjo5NY3DW7dqVjZDa1DcCwwWMeW1+v96RxqcBd6CGwhLYuIbnNWwFdr9qyrknDGbGhtbRqST+1amsRI/wCaBSmkqd69lNcTc60Cgp+VVHnrHsAuGiN5ZDsu4B0F6tGNxSxxs5NgoJrPuTkkxOLkxbXyg2B/YUElHySgbCQ6F2YtJfrYXKitTnCxo1gAERrDawArL/tBx0kQgeNyrBm1G+1SPB8biJOFSzSTtmCMbkA5h/SgI+yOMDDYiW3xzOfp1qVbikmvwsOgIFQHK3EHwvDMOUVSZXe4bTSin5hU2z4RD3KMQaCe4ZIJ84MYBVbixsSexo+PDgKqFAtxqDrb59elVvgXNOGEoRYnQuct2N1q0Ljka52CG5J206igBGSHNEUUgk6W0F99azXjvKBYkowAuxAzdzfrWpxcfwbbYmP2JH9aeEmFk/NC3sV2oMJl4JNgnhnzfnFjt16+lbtg8arIpzqxIB8hvqRVP+0fhJnEccC3ItYLqoHe9HfZ3weTDRPDKgEiubN3XS1Bm32rB/8AqL5lsMqBNLAgg3t60FykgImvtlH+Gtu5l5dgxsfhzDYgq4+IH0Pas1l5KxGCM5HniI8rAa+zDvQSWCj0XXoKk4BUQMQkUYZ2sABr8qj5udIUHkVnPTpQW4qaMRNLn97Vl+L53nfRFVPlrXOA81FJGbFM0ilbKAdAe9qDSsTxSCO2eZB7mvU3yz92xOHSREjdtQbhSwt/FfbevUGfSRy8LxeU/wDx5To3S3T2YVouERHAZNVOoI6+tD8b4SuKhMTi5Gq+h9Kp3JXFnw0xwOIuLE5L++wPa1BowhWmpEXpvS4hpoKbMJoKxzwieFcWvWePOB/xVz57RlAOtr63rPnOtArFm/mve1dgxdvlTbJ0Gp2tQa3BsR3/AEoLpwvihYDNUpLhEkHnAIqh4bEZT/zVo4fi8yjWglcLyrhzul6Ij4XFE2igUnD8VC6Fre9IxXEk3zAE/OgcxWJVQbaVSuMcTLmjuNcSFio/91AYPCPM2VR7noPegvv2Szf61wNba1pGlqofJvD/AAUBOlz9au42vegXcCmwQL6UkD9Kamk1tQVb7Q8eRGmHjF3lO3pep3l3ha4bDpEN/if/AHHpVRhlGI4sWJvHCoCk7XFXd2He/wDWgpv2o/DD7t+1SuI/C4E24zKo+tQ/2km6w211b9qhuIcySzYMYZgoUMoFtzagueIUR4PAoVv+Hm3ta9R0mTW4bpsQetSHNiqDhYzmBWFbZdvnVZxuLVN3Ya9v7UDgxCI6urm6uCAR/NbX61pvFJB93dtAGjbr6ftWKTPH5iJr3ubEfQfrRj8zysmQt5VQrb0IoBJOGFtQyG5HW3WrRyhy/E7TeJKsd8iooYai9zYVR8LATaxH1tU1wbDlJ43a2VTfQ0G8QYdcgAFtNB6DTWn49V7Dr/xSEkBRSLWYC3zFcxE2XyjViNB0oHEgANxf66V0oLWO3bv70zDMfzrlNrntTrMNbGgyr7R+HmJJFHwkgj5ms1YGt3564OsyC5sNiaqGF5Nwv5sze5oM0zWryqTsCT6Cteg5UwYsRFt6709g8NHHL5Y1HS1hQZhwsYqEl4UkXMLHKDrr2+VercNth8rbV6gj2kyNbpaq3z3gEmjGIXSaIaHqR1qq4vnOVmJt/govB86X0dPT5UFu5Z5iGIgRh8SjK4HcVJy8SsL1keA4191xDlCfDc3t761MjmsuTppQF858fSRTHZr+2lUfMPWi8ZNd2Obf1qb5c5NnxRuUKJ/E2l/UUA3JmBWTEKTqFAb333qV5q5ZQSE2Iz7HordqveB5WhwiBU1Y6s3c/wBqOkwKSrkcaEW9bjrQfPuOwTRHK4+fekYfEsugNafzPy7kup1H5TaqbDwZC5VjlI/zSgg2xbMbkk14YsirH/2ynRz9Kcj5RU7v+lBW8NE8zhFBJP6e9aVy1wUKuRVsPztaiuVOUlALAWXbMdz7VdI8GqJkGn9aCAxEF1AGltB7VGcU4r4AAa4NWowelJ4lwiOZcrqDpoeooKe3MseW5bWoPiXNxCkKDqDrU5xbkHKM0RvboaofMGFaLyuCGPf+lB3gONMYZtSWN6nF5lZRYioqDCZUUelJaDW2/wDWgXxrizThQwtl2oPBx5niT+J1H1IpziGEZFUsNDtRPKsOfGYdf/ItBo3NOHzYliG/0o4wR2FtbVVsXhkdCpcZibj2qb5inkGMlKsttVAB1JHRvSq94smYEquXbfr1oILiXDsl2DqfQb0K0WTQ3BKA2PrU1jsIxDXybg7jTXpUVxlrynW4CqLj0oBfDvp1qX4ZhSASSL22vURFETt+9ODCuuv/AOqDdOScX4sK32VR9anYwGfNroLexqsfZ5hcmDXrdbk7jNerSwZfMBcEajregfkjBFjqOtRMIyGRL7Alb9t6lo3BHX+1QnNU5iRZxqour/7WFr/KgL4xF4mGNt8oI+VVDCPr8q5g+Z8TL+DhogYxe8r7EdQvemImIYgjW+tBMwtpQ2IjOa4NeienjrQH4OXTXtXaheI8UECBiNzbf0JrtBitLzCuW3p8KNKAfELddtql+VeCT4o5Y0OUbsbgD671Ncg8NilxaCRAw7G9q24wqnlRQoHRQB+1BQeB/Z9FEweS0jDpbS9XCJOgFrf02tR52piM6D2/rQC4uO+tDxqbipKQaUIlB7EYUOpVgDfp/aqZzHyzkN1vl7jf2NX1dqzD7WeMzxMiRysqncCgbhwpXS5/rVk4Ny/nOaTReg7+hrKOW+Lz+Mp8Vt+uv71vfCpSyAsbnSgdEQ+ECwA0A2prFxba0U41P+daZagEWI3p85hvTsQ1pT0A7i+l6Cx/BI5lIkQN7jUexouTQ0/GdKCk47kYHVDbsD+1RHCeWXWRhKlrbHp9a0yXYGmMRqNe1Bmf2jxKscIXu37VG/ZnCH4jD/KGb6D/AJqY+1QWWAD+Jv2NB/ZMo++k9fCegc4qjl8SwjPieKSG7gHS3pUUM+t00YWZdND3WumdicQSx+Jup/iNR2N1UG5v7mgfngVbtsAQQCdfaoieTMzHub17EbUM51oHVGtO+CbX6epoa9KG3z70Gtchc94RIkwsv4RUWDE+U/OtGws8ciho3Vx3Ugisj5G4PA6xl4kYkG9xfpTXNEQwj5sNeI/yEgfS9qDZsooHjkaNh5Vk1TI2b2A3rOuUOaMXIq552b3Cnr7VY+aMfI2BxN2/IRoAOnoKCE5dxIWMZT5B+tdlmzMWta5qC4cSIFsfyj9qLhkNxrQTaNcUShPegcNsKPQb0FD+0PHEukQPwjMbdzXqiua9cZLfpavUH//Z" alt="historia"><div>
+<h2>Historia y Evolución</h2>
+<li>La historia y evolución de la realidad virtual (RV) y la realidad aumentada (RA) se extienden a lo largo de varias décadas, desde conceptos de ciencia ficción hasta las tecnologías inmersivas actuales. Aunque sus orígenes se entrelazan, cada una siguió un camino de desarrollo distinto.</li>
+<h3>Historia y evolución de la realidad virtual (RV)</h3>
+
+    <h3>Antecedentes e inicios (siglo XIX - 1960)</h3>
+<ul>
+<li>Estereoscopio (1838): Charles Wheatstone sentó las bases de la percepción 3D al utilizar dos imágenes ligeramente diferentes para crear una ilusión tridimensional, un principio clave para la RV.</li>
+<li>Gafas Pigmalion (1935): Stanley G. Weinbaum concibió en su relato unas gafas que ofrecían una experiencia digital multisensorial, lo que influyó en la imaginación de futuros inventores.</li>
+<li>Gafas Pigmalion (1935): Stanley G. Weinbaum concibió en su relato unas gafas que ofrecían una experiencia digital multisensorial, lo que influyó en la imaginación de futuros inventores.</li>
+<li>Simuladores de vuelo (1929): Ya en esta época se usaban simuladores para entrenar pilotos, aunque carecían de imágenes. </li>
+
+    <h3>Primeros prototipos y avances (1960 - 1980)</h3>
+<li>Espada de Damocles (1968): Ivan Sutherland y Thomas Furness desarrollaron el primer visor de RV montado en la cabeza (HMD). Era tan pesado que debía suspenderse del techo, pero fue un avance significativo.</li>
+<li>Concepto de "Ciberespacio" (1984): El término fue acuñado por el autor William Gibson en su novela Neuromancer, inspirando la idea de una realidad virtual tridimensional.</li>
+
+    <h3>Comercialización y fracasos iniciales (1990) </h3>
+<li>Primeros cascos y guantes: Empresas como VPL Research, fundada por Jaron Lanier, desarrollaron dispositivos como el EyePhone y el DataGlove, promoviendo la interacción en entornos virtuales.</li>
+<li>Videojuegos y arcades: Surgieron las primeras máquinas de RV en salas de arcade como Dactyl Nightmare de Virtuality. Compañías como Sega y Nintendo intentaron lanzar productos para el mercado masivo, pero tuvieron un éxito limitado. El Virtual Boy de Nintendo (1995) fue un notable fracaso comercial debido a su diseño incómodo. </li>
+    
+	<h3>Resurgimiento y la era moderna (2010 - actualidad)</h3>
+<li>Oculus Rift (2012): El proyecto de Kickstarter de Oculus marcó un punto de inflexión, reviviendo el interés por la RV y demostrando su potencial.</li>
+<li>Dispositivos masivos: Tras la adquisición de Oculus por Facebook (Meta), surgieron competidores como HTC Vive y PlayStation VR. Google lanzó el visor de bajo coste Cardboard.</li>
+<li>RV autónoma: La llegada de dispositivos autónomos, como el Oculus Quest (posteriormente Meta Quest), eliminó la necesidad de estar conectado a una PC, democratizando aún más la tecnología. </li>
+</ul>
+<h3>Historia y evolución de la realidad aumentada (RA)</h3>
+<ul>
+    <h3>Primeras ideas y sistemas (1950 - 1980)</h3>
+<li>Sensorama (1957): Aunque se le atribuye más a la RV, la experiencia multisensorial de Heilig también puede considerarse un precursor de la RA.</li>
+<li>Primer sistema de RA (1973): Myron W. Krueger creó una instalación llamada Videoplace, que mezclaba proyecciones de video con la interacción del usuario. Se la considera la primera implementación de RA. </li>
+    
+	<h3>Avances en la investigación (1990 - 2000)</h3>
+<li>Acuñación del término: En 1992, el término "realidad aumentada" fue utilizado por el investigador Tom Caudell para describir un sistema de ayuda en la fabricación.</li>
+<li>Superposiciones gráficas: Se experimentó con sistemas de superposición para fusionar contenido digital con el mundo real, aunque la tecnología era costosa y compleja.</li>
+<li>Avances en seguimiento: La investigación se centró en mejorar el seguimiento de marcadores para integrar con mayor precisión los elementos virtuales.</li>
+
+    <h3>La revolución móvil y el boom (2010 - actualidad)</h3>
+<li>Teléfonos inteligentes: La popularización de los smartphones con cámaras, sensores y mayor capacidad de procesamiento abrió las puertas a la RA de consumo. Aplicaciones sencillas como la superposición de datos de GPS en tiempo real se hicieron posibles.</li>
+<li>Pokémon GO (2016): El juego de Niantic demostró el potencial masivo y comercial de la RA en el mercado de consumo.</li>
+<li>Plataformas de desarrollo: La llegada de kits de desarrollo como ARCore de Google y ARKit de Apple ha permitido a los desarrolladores crear fácilmente experiencias de RA para miles de millones de dispositivos móviles.</li>
+<li>Avances en hardware: La evolución continúa con el desarrollo de gafas inteligentes y otros dispositivos que ofrecen experiencias de RA más avanzadas e inmersivas. </li>
+</ul>
+</div>
+</div>
+</section><!-- Hardware --><section id="hardware" class="tab">
+<div class="container">
+<div class="card">
+<img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRcpP0DFGU4sxqB7D8Jcdog346oM_fStCo1Sw&s" alt="hardware"><div>
+<h2>Hardware</h2>
+<li>El hardware de realidad virtual (RV) y realidad aumentada (RA) abarca un conjunto de dispositivos diseñados para crear e interactuar con entornos virtuales o superponer información digital en el mundo real, respectivamente</li>
+
+   <h3>Hardware de realidad virtual (RV)</h3>
+
+<li>La realidad virtual sumerge al usuario en un entorno completamente simulado. El hardware se enfoca en bloquear el mundo exterior para ofrecer una experiencia inmersiva completa. </li>
+<ul>
+   <h3>Componentes principales:</h3>
+<li>Visores o cascos: Son el dispositivo central, con lentes y pantallas integradas que muestran el entorno digital en 3D.</li>
+<li>Sensores y sistemas de seguimiento: Rastrea los movimientos de la cabeza y el cuerpo para que la perspectiva del usuario se adapte en tiempo real al mundo virtual.</li>
+<li>Sensores internos: Pueden estar integrados en el visor para el seguimiento de la posición.</li>
+<li>Sensores externos (estaciones base): Se colocan en la habitación para crear un área de juego y rastrear los movimientos con mayor precisión.</li>
+<li>Controladores de movimiento: Permiten al usuario interactuar con los objetos dentro del entorno virtual a través de gestos y movimientos de las manos.</li>
+<li>Sistema de audio: Proporciona un sonido espacial 3D que contribuye a la inmersión, permitiendo al usuario percibir la dirección de los sonidos virtuales.</li>
+<li>Dispositivo de procesamiento: Una computadora potente (con una GPU robusta), una consola de videojuegos o, en el caso de visores autónomos, un procesador integrado, es fundamental para renderizar los gráficos 3D complejos. </li>
+</ul>
+<h3>Ejemplos de dispositivos de RV:</h3>
+<ul>
+<li>Visores autónomos: Meta Quest 3, Pico 4.</li>
+<li>Visores conectados: HP Reverb G2 VR, visores para PlayStation VR (PSVR). </li>
+<li>Sensores de profundidad para interacción realista.</li>
+
+   <h3>Hardware de realidad aumentada (RA)</h3>
+<li>La realidad aumentada superpone elementos digitales sobre la visión del usuario del mundo real, enriqueciendo su entorno.</li>
+<h3>Componentes principales:</h3>
+<li>Dispositivo con cámara: Un smartphone o una tableta suelen ser el hardware más común para la RA, ya que utilizan su cámara para capturar el entorno y una pantalla para mostrar la capa virtual.</li>
+<li>Sensores: Los dispositivos usan sensores como el giroscopio y el acelerómetro para determinar la orientación y el movimiento del usuario, lo que permite anclar los objetos virtuales al mundo real.</li>
+<h3>Interfaces de visualización:</h3>
+<li>Pantallas de dispositivos móviles: La pantalla de un smartphone o tableta es la interfaz más habitual.</li>
+<li>Gafas o visores transparentes: Permiten al usuario ver el entorno real directamente, mientras proyectan los elementos digitales sobre las lentes.</li>
+<li>Unidades de procesamiento: Se encargan de interpretar los datos de la cámara y los sensores para superponer el contenido virtual en tiempo real.</li>
+<h3>Ejemplos de dispositivos de RA:</h3>
+<li>Smartphones y tablets: A través de aplicaciones que utilizan la cámara, como Pokémon Go o las herramientas de diseño de interiores.</li>
+<li>Visores inteligentes: Microsoft HoloLens 2 o XREAL ONE.</li>
+</ul>
+</div>
+</div>
+</section><!-- Software --><section id="software" class="tab">
+<div class="container">
+<div class="card">
+<img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQjcDvAmi-qHUizevDZuFaoWeaw3rtB60CULg&s" alt="software"><div>
+<h2>Software</h2>
+<li>Para el desarrollo de experiencias de realidad virtual (RV) y realidad aumentada (RA), existe una amplia gama de software que se adapta a distintos niveles de experiencia y necesidades. Las herramientas se pueden clasificar en motores de juego, kits de desarrollo de software (SDK), herramientas de creación de contenido y aplicaciones especializadas. </li>
+<ul>
+<h3>Software de desarrollo para RA y RV</h3>
+<li>Unity: Un motor de juego muy popular para desarrollar todo tipo de aplicaciones, incluidas las de RV y RA.</li>
+<li>Vuforia: Una plataforma de desarrollo de realidad aumentada ampliamente utilizada para la creación de experiencias de RA. </li>
+<li>Lightship ARDK: Un kit de desarrollo de realidad aumentada de Niantic (creadores de Pokémon Go) que incluye funcionalidades como detección de imágenes y realidad aumentada compartida. </li>
+<li>ARToolKit: Un kit de desarrollo de software de código abierto.</li>
+<h3>Kits de desarrollo de software (SDK)</h3>
+<li>Los SDK proporcionan herramientas específicas para integrar funciones de RA en aplicaciones móviles.</li>
+<li>ARKit (Apple): Un SDK exclusivo para dispositivos iOS (iPhone, iPad) que permite a los desarrolladores crear experiencias de RA precisas y de alto rendimiento utilizando la cámara y los sensores del dispositivo.</li>
+<li>ARCore (Google): La plataforma de RA de Google para dispositivos Android. Utiliza el seguimiento de movimiento, la comprensión ambiental y la estimación de luz para fusionar contenido virtual con el mundo real.</li>
+<li>Vuforia Engine: Un SDK multiplataforma que se especializa en el reconocimiento de imágenes y objetos 3D. Se integra con Unity y otros entornos para crear aplicaciones de RA que responden a marcadores o elementos físicos. </li>
+<h3>Herramientas de creación de contenido y modelado 3D</h3>
+<li>Para dar vida a los entornos y objetos virtuales, se utilizan herramientas de modelado y animación:</li>
+<li>Blender: Una suite de creación 3D de código abierto y gratuita. Es una opción popular para modelar, animar y esculpir activos 3D que luego se pueden usar en aplicaciones de RV y RA.</li>
+<li>Adobe Aero: Una herramienta todo en uno para crear experiencias de RA interactivas sin necesidad de codificación avanzada. Permite a diseñadores y desarrolladores visualizar y publicar contenido de RA en el mundo real. </li>
+<h3>Plataformas y herramientas de uso específico<h3>
+<li>Existen herramientas especializadas para necesidades particulares, como:</li>
+<li>Vossle: Una plataforma para crear experiencias de RA basadas en la web (WebAR), lo que permite acceder a la RA directamente desde un navegador sin necesidad de descargar una aplicación.</li>
+<li>StellarX: Un software que permite la creación de contenido de RV de forma práctica, sin requerir grandes conocimientos de codificación.</li>
+<li>SketchUp: Un programa de modelado 3D útil para crear diseños arquitectónicos y visualizaciones de realidad virtual.</li>
+</ul>
+</div>
+</div>
+</section><!-- Aplicaciones --><section id="aplicaciones" class="tab">
+<div class="container">
+<div class="card">
+<img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQxKoXQgvebKgbmZZWMmB4ZEvy2qbH_oR0pSQ&s" alt="aplicaciones"><div>
+<h2>Aplicaciones en diversas industrias</h2>
+<h3>Realidad Virtual</h3>
+<ul>
+<li>Juegos y entretenimiento: exploración de mundos virtuales.</li>
+<li>Medicina: simulación de cirugías y terapias para TEPT.</li>
+<li>Arquitectura y diseño: recorridos virtuales y prototipos.</li>
+<li>Educación: exploración del sistema solar, museos y laboratorios virtuales.</li>
+</ul>
+<h3>Realidad Aumentada</h3>
+<ul>
+<li>Comercio: visualizar productos virtuales antes de comprar.</li>
+<li>Logística e industria: guías digitales en montaje y reparación.</li>
+<li>Turismo: guías virtuales con información histórica.</li>
+<li>Marketing: anuncios interactivos que cobran vida.</li>
+</ul>
+<h3>Futuro</h3>
+<ul>
+<li>Mayor accesibilidad: dispositivos compactos y asequibles.</li>
+<li>Hiperrealismo: tecnología háptica y visual avanzada.</li>
+<li>Integración con el metaverso: mundos virtuales interconectados.</li>
+<li>Sustitución de dispositivos: gafas de RA podrían reemplazar smartphones.</li>
+</ul>
+</div>
+</div>
+</section><!-- Diferencias --><section id="diferencias" class="tab">
+<div class="container">
+<div class="card">
+<img src="https://perspektiva360.com/wp-content/uploads/2025/01/portada-vr-ra-esp.webp" alt="diferencias"><div>
+<h2>Diferencias clave: RA vs RV</h2>
+<table>
+<tr><th>Característica</th><th>RA</th><th>RV</th></tr>
+<tr><td>Entorno</td><td>Se superpone a la vista del mundo real</td><td>Sustituye completamente la vista del mundo real</td></tr>
+<tr><td>Experiencia</td><td>Enriquece la realidad</td><td>Inmersiva, llena todo el campo visual</td></tr>
+<tr><td>Dispositivos</td><td>Teléfonos, tablets, gafas RA</td><td>Cascos RV voluminosos con mandos</td></tr>
+<tr><td>Ejemplo visual</td><td>Usuario viendo un mueble 3D</td><td>Usuario inmerso en mundo virtual o espacial</td></tr>
+</table>
+</div>
+</div>
+</section><!-- Contacto --><section id="contacto" class="tab">
+  <div class="contacto-contenedor">
+    <h2>Contacto</h2>
+    <form>
+      <label for="nombre">Nombre</label>
+      <input type="text" id="nombre" placeholder="Escribe tu nombre" required>
+
+      <label for="correo">Correo electrónico</label>
+      <input type="email" id="correo" placeholder="Tu correo electrónico" required>
+
+      <label for="mensaje">Mensaje</label>
+      <textarea id="mensaje" rows="4" placeholder="Escribe tu mensaje aquí..." required></textarea>
+
+      <button type="submit">Enviar</button>
+    </form>
+  </div>
+</section>
+</div>
+</div>
+</section><footer>
+&copy; 2025 Ada | Proyecto de Realidad Virtual y Aumentada
+</footer><script>
+// Tabs
+const tabs = document.querySelectorAll('.tab');
+const navLinks = document.querySelectorAll('nav a');
+navLinks.forEach(link => {
+  link.addEventListener('click', () => {
+    const target = link.getAttribute('data-tab');
+    tabs.forEach(tab => tab.classList.remove('active'));
+    document.getElementById(target).classList.add('active');
+  });
+});
+</script></body>
+</html>
